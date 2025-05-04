@@ -66,3 +66,6 @@
 *.pid.lock
 *.lock
 *.sln.cache
+
+# Metronic
+**/metronic/
