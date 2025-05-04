@@ -1,0 +1,75 @@
+﻿<header class="kt-header fixed top-0 z-10 start-0 end-0 flex items-stretch shrink-0 bg-background" data-kt-sticky="true"
+        data-kt-sticky-class="border-b border-border" data-kt-sticky-name="header" id="header">
+        <!-- Container -->
+        <div class="kt-container-fixed flex justify-between items-stretch lg:gap-4" id="headerContainer">
+                <!-- Mobile Logo -->
+                <div class="flex gap-2.5 lg:hidden items-center -ms-1">
+                        <a class="shrink-0" href="html/demo1.html">
+                                <img class="max-h-[25px] w-full" src="assets/media/app/mini-logo.svg"/>
+                        </a>
+                        
+                </div>
+                <!-- End of Mobile Logo -->
+                <!--Left-->
+                <div class="flex items-center" id="headerLeft">
+                        <div class="hidden lg:flex lg:items-stretch">
+                                <span id="OS" class="mr-5">
+                                        System: Windows @OS.Version (@Architecture)
+                                </span>
+                                <span id="Uptime">
+                                        Uptime: @Uptime
+                                </span>
+                        </div>
+                </div>
+                <!--End left-->
+                <!-- Right -->
+                <div class="flex items-center gap-2.5" id="headerRight">
+                        <div class="hidden lg:flex lg:items-stretch">
+                                <span id="Version">
+                                        Version: @Version
+                                </span>
+                        </div>
+                        <div class="flex lg:hidden items-center">
+                                <div class="flex items-center">
+                                        <button class="kt-btn kt-btn-icon kt-btn-ghost" data-kt-drawer-toggle="#sidebar">
+                                                <i class="ki-filled ki-menu text-[24px]">
+                                                </i>
+                                        </button>
+                                </div>
+                        </div>
+                </div>
+                <!-- End right -->
+        </div>
+        <!-- End of Container -->
+</header>
+
+@code
+{
+        // Get System Name
+        private OperatingSystem OS => Environment.OSVersion;
+
+        // Get System Architecture
+        private string Architecture => Environment.Is64BitOperatingSystem ? "64-bit" : "32-bit";
+
+        // Get System Uptime
+        private int UptimeInMinutes => (int)TimeSpan.FromMilliseconds(Environment.TickCount).TotalMinutes;
+
+        // reformat uptime
+        private string Uptime
+        {
+                get
+                {
+                        if (UptimeInMinutes < 0)
+                                return "0 minutes";
+                        else if (UptimeInMinutes < 60)
+                                return $"{UptimeInMinutes} minutes";
+                        else if (UptimeInMinutes < 1440)
+                                return $"{UptimeInMinutes / 60} hours";
+                        else
+                                return $"{UptimeInMinutes / 1440} days";
+                }
+        }
+
+        // Get binary version
+        private string Version => System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+}
