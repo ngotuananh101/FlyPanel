@@ -1,7 +1,6 @@
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
-    Arial, sans-serif;
-  margin: auto;
-  max-width: 38rem;
-  padding: 2rem;
-}
+@import "./metronic/css/styles.css";
+@import "./metronic/css/demos/demo1.css";
+@import "./metronic/vendors/keenicons/duotone/style.css";
+@import "./metronic/vendors/keenicons/filled/style.css";
+@import "./metronic/vendors/keenicons/outline/style.css";
+@import "./metronic/vendors/keenicons/solid/style.css";
